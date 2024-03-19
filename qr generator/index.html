@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="qr">
+      <p>Generate randon QR code</p>
+      <input
+        type="text"
+        placeholder="Enter word or Url to generate QR"
+        class="qrText"
+      />
+      <div id="imgBox">
+        <img src="" id="qrImg" />
+      </div>
+      <button class="btn" onclick="qrGenerator()">generete QR code</button>
+    </div>
+
+    <script>
+      let imgBox = document.querySelector("#imgBox");
+      let qrImg = document.querySelector("#qrImg");
+      let qrText = document.querySelector(".qrText");
+      let btn = document.querySelector(".btn");
+
+      function qrGenerator() {
+        if (qrText.value == "") {
+          qrText.classList.add("error");
+          setTimeout(() => {
+            qrText.classList.remove("error");
+          }, 1000);
+        }
+        else{
+            qrImg.src =
+          "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" +
+          qrText.value;
+        imgBox.classList.add("showImg");
+        qrText.value = "";
+        }
+      
+      }
+    </script>
+  </body>
+</html>
